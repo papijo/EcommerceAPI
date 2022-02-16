@@ -18,9 +18,12 @@ const cartRoute = require("./routes/cart");
 const paymentRoute = require("./routes/payment");
 const testRoute = require("./routes/test");
 
+const mongoUrl =
+  "mongodb+srv://admin1:cBv9wS7mh34X2MN@cluster0.pyzpf.mongodb.net/test?retryWrites=true";
+
 //Database Connection
 mongoose
-  .connect(config.MONGODB_URI)
+  .connect(mongoUrl, { useNewUrlParser: true })
   .then(() => {
     logger.info("DB Connection Successful!!!!");
   })

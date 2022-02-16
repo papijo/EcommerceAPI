@@ -104,8 +104,7 @@ router.post("/login", async (req, res) => {
         isStaff: user.isStaff,
         isAdmin: user.isAdmin,
       },
-      config.JWT_SECRET_KEY,
-      { expiresIn: "72h" }
+      config.JWT_SECRET_KEY
     );
 
     //Refresh Token
@@ -120,7 +119,7 @@ router.post("/login", async (req, res) => {
 });
 
 //Logout Route
-router.post("/logout", verifyToken, (req, res) => {
+router.post("/logout", (req, res) => {
   let user = req.body;
   // console.log(user);
   // console.log("You logged out successfully");
