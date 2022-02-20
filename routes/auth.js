@@ -40,15 +40,15 @@ router.post("/register", async (req, res) => {
     res.status(200).json(savedUser);
 
     // START SENDING EMAIL
-    const msg = {
-      to: req.body.email,
-      from: "joe.ebh100@live.com", // Use the email address or domain you verified above
-      templateId: "d-c1e29e6880084682939d839c6cf3c24d",
-      dynamicTemplateData: {
-        name: req.body.firstname + " " + req.body.firstname,
-        subject: "Registeration Successful!",
-      },
-    };
+//     const msg = {
+//       to: req.body.email,
+//       from: "joe.ebh100@live.com", // Use the email address or domain you verified above
+//       templateId: "d-c1e29e6880084682939d839c6cf3c24d",
+//       dynamicTemplateData: {
+//         name: req.body.firstname + " " + req.body.firstname,
+//         subject: "Registeration Successful!",
+//       },
+//     };
 
 //     //ES6
 //     sgMail.send(msg).then(
@@ -64,16 +64,16 @@ router.post("/register", async (req, res) => {
 //       }
 //     );
     //ES8
-    (async () => {
-      try {
-        await sgMail.send(msg);
-      } catch (error) {
-        console.error(error);
+//     (async () => {
+//       try {
+//         await sgMail.send(msg);
+//       } catch (error) {
+//         console.error(error);
 
-        if (error.response) {
-          console.error(error.response.body);
-        }
-      }
+//         if (error.response) {
+//           console.error(error.response.body);
+//         }
+//       }
     })();
 
     console.log(savedUser);
