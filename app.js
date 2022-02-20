@@ -16,7 +16,7 @@ const productRoute = require("./routes/product");
 const orderRoute = require("./routes/order");
 const cartRoute = require("./routes/cart");
 const paymentRoute = require("./routes/payment");
-const testRoute = require("./routes/test");
+// const testRoute = require("./routes/test");
 
 const mongoUrl =
   "mongodb+srv://admin1:cBv9wS7mh34X2MN@cluster0.pyzpf.mongodb.net/test?retryWrites=true";
@@ -42,7 +42,7 @@ app.use("/api/products", productRoute);
 app.use("/api/orders", orderRoute);
 app.use("/api/cart", cartRoute);
 app.use("/api/checkout", paymentRoute);
-app.use("/api/test", testRoute);
+// app.use("/api/test", testRoute);
 
 //Custom Middleware
 app.use(middleware.unknownEndpoint);

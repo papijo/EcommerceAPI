@@ -8,9 +8,6 @@ const { verifyToken } = require("../utils/verifyToken");
 const { errorHandler } = require("../utils/middleware");
 
 const sgMail = require("@sendgrid/mail");
-sgMail.setApiKey(
-  "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"
-);
 
 //Register
 router.post("/register", async (req, res) => {
@@ -42,42 +39,42 @@ router.post("/register", async (req, res) => {
     const savedUser = await newUser.save();
     res.status(200).json(savedUser);
 
-    // START SENDING EMAIL
-    const msg = {
-      to: req.body.email,
-      from: "joe.ebh100@live.com", // Use the email address or domain you verified above
-      templateId: "d-c1e29e6880084682939d839c6cf3c24d",
-      dynamicTemplateData: {
-        name: req.body.firstname + " " + req.body.firstname,
-        subject: "Registeration Successful!",
-      },
-    };
+    // // START SENDING EMAIL
+    // const msg = {
+    //   to: req.body.email,
+    //   from: "joe.ebh100@live.com", // Use the email address or domain you verified above
+    //   templateId: "d-c1e29e6880084682939d839c6cf3c24d",
+    //   dynamicTemplateData: {
+    //     name: req.body.firstname + " " + req.body.firstname,
+    //     subject: "Registeration Successful!",
+    //   },
+    // };
 
-    //ES6
-    sgMail.send(msg).then(
-      () => {
-        console.log("Message sent!");
-      },
-      (error) => {
-        console.error(error);
+    // //ES6
+    // sgMail.send(msg).then(
+    //   () => {
+    //     console.log("Message sent!");
+    //   },
+    //   (error) => {
+    //     console.error(error);
 
-        if (error.response) {
-          console.error(error.response.body);
-        }
-      }
-    );
-    //ES8
-    (async () => {
-      try {
-        await sgMail.send(msg);
-      } catch (error) {
-        console.error(error);
+    //     if (error.response) {
+    //       console.error(error.response.body);
+    //     }
+    //   }
+    // );
+    // //ES8
+    // (async () => {
+    //   try {
+    //     await sgMail.send(msg);
+    //   } catch (error) {
+    //     console.error(error);
 
-        if (error.response) {
-          console.error(error.response.body);
-        }
-      }
-    })();
+    //     if (error.response) {
+    //       console.error(error.response.body);
+    //     }
+    //   }
+    // })();
 
     console.log(savedUser);
   } catch (error) {}
