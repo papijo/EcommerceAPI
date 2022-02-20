@@ -7,10 +7,10 @@ const jwt = require("jsonwebtoken");
 const { verifyToken } = require("../utils/verifyToken");
 const { errorHandler } = require("../utils/middleware");
 
-const sgMail = require("@sendgrid/mail");
-sgMail.setApiKey(
-  "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"
-);
+// const sgMail = require("@sendgrid/mail");
+// sgMail.setApiKey(
+//   "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"
+// );
 
 //Register
 router.post("/register", async (req, res) => {
@@ -53,19 +53,19 @@ router.post("/register", async (req, res) => {
       },
     };
 
-    //ES6
-    sgMail.send(msg).then(
-      () => {
-        console.log("Message sent!");
-      },
-      (error) => {
-        console.error(error);
+//     //ES6
+//     sgMail.send(msg).then(
+//       () => {
+//         console.log("Message sent!");
+//       },
+//       (error) => {
+//         console.error(error);
 
-        if (error.response) {
-          console.error(error.response.body);
-        }
-      }
-    );
+//         if (error.response) {
+//           console.error(error.response.body);
+//         }
+//       }
+//     );
     //ES8
     (async () => {
       try {
