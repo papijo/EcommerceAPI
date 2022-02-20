@@ -7,12 +7,6 @@ const jwt = require("jsonwebtoken");
 const { verifyToken } = require("../utils/verifyToken");
 const { errorHandler } = require("../utils/middleware");
 
-<<<<<<< HEAD
-const sgMail = require("@sendgrid/mail");
-=======
-// const sgMail = require("@sendgrid/mail");
->>>>>>> dbe7ebc348b88cd543c5f6ccc8593f33cdcd270d
-
 //Register
 router.post("/register", async (req, res) => {
   const userEmailExist = await User.findOne({ email: req.body.email });
@@ -42,82 +36,6 @@ router.post("/register", async (req, res) => {
   try {
     const savedUser = await newUser.save();
     res.status(200).json(savedUser);
-
-<<<<<<< HEAD
-    // // START SENDING EMAIL
-    // const msg = {
-    //   to: req.body.email,
-    //   from: "joe.ebh100@live.com", // Use the email address or domain you verified above
-    //   templateId: "d-c1e29e6880084682939d839c6cf3c24d",
-    //   dynamicTemplateData: {
-    //     name: req.body.firstname + " " + req.body.firstname,
-    //     subject: "Registeration Successful!",
-    //   },
-    // };
-
-    // //ES6
-    // sgMail.send(msg).then(
-    //   () => {
-    //     console.log("Message sent!");
-    //   },
-    //   (error) => {
-    //     console.error(error);
-
-    //     if (error.response) {
-    //       console.error(error.response.body);
-    //     }
-    //   }
-    // );
-    // //ES8
-    // (async () => {
-    //   try {
-    //     await sgMail.send(msg);
-    //   } catch (error) {
-    //     console.error(error);
-
-    //     if (error.response) {
-    //       console.error(error.response.body);
-    //     }
-    //   }
-    // })();
-=======
-    // START SENDING EMAIL
-//     const msg = {
-//       to: req.body.email,
-//       from: "joe.ebh100@live.com", // Use the email address or domain you verified above
-//       templateId: "d-c1e29e6880084682939d839c6cf3c24d",
-//       dynamicTemplateData: {
-//         name: req.body.firstname + " " + req.body.firstname,
-//         subject: "Registeration Successful!",
-//       },
-//     };
-
-//     //ES6
-//     sgMail.send(msg).then(
-//       () => {
-//         console.log("Message sent!");
-//       },
-//       (error) => {
-//         console.error(error);
-
-//         if (error.response) {
-//           console.error(error.response.body);
-//         }
-//       }
-//     );
-    //ES8
-//     (async () => {
-//       try {
-//         await sgMail.send(msg);
-//       } catch (error) {
-//         console.error(error);
-
-//         if (error.response) {
-//           console.error(error.response.body);
-//         }
-//       }
-    })();
->>>>>>> dbe7ebc348b88cd543c5f6ccc8593f33cdcd270d
 
     console.log(savedUser);
   } catch (error) {}
