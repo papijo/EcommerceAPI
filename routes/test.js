@@ -1,8 +1,16 @@
+<<<<<<< HEAD
 // const User = require("../models/User");
 // const PDFDocument = require("pdfkit");
 // const fs = require("fs");
 // const router = require("express").Router();
 // const sgMail = require("@sendgrid/mail");
+=======
+const User = require("../models/User");
+const PDFDocument = require("pdfkit");
+const fs = require("fs");
+const router = require("express").Router();
+const sgMail = require("@sendgrid/mail");
+>>>>>>> dbe7ebc348b88cd543c5f6ccc8593f33cdcd270d
 
 // const fileName = "output.pdf";
 
