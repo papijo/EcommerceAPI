@@ -3,9 +3,6 @@ const PDFDocument = require("pdfkit");
 const fs = require("fs");
 const router = require("express").Router();
 const sgMail = require("@sendgrid/mail");
-sgMail.setApiKey(
-  "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"
-);
 
 const fileName = "output.pdf";
 
