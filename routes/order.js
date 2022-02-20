@@ -7,13 +7,6 @@ const {
 } = require("../utils/verifyToken");
 const logger = require("../utils/logger");
 
-<<<<<<< HEAD
-// const sgMail = require("@sendgrid/mail");
-=======
-const sgMail = require("@sendgrid/mail");
-
->>>>>>> dbe7ebc348b88cd543c5f6ccc8593f33cdcd270d
-
 const router = require("express").Router();
 
 //Create an Order
