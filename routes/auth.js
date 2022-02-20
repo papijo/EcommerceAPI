@@ -8,9 +8,6 @@ const { verifyToken } = require("../utils/verifyToken");
 const { errorHandler } = require("../utils/middleware");
 
 // const sgMail = require("@sendgrid/mail");
-// sgMail.setApiKey(
-//   "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"
-// );
 
 //Register
 router.post("/register", async (req, res) => {
