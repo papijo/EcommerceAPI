@@ -19,7 +19,7 @@ const paymentRoute = require("./routes/payment");
 // const testRoute = require("./routes/test");
 
 const mongoUrl =
-  "mongodb+srv://admin1:cBv9wS7mh34X2MN@cluster0.pyzpf.mongodb.net/test?retryWrites=true";
+  "mongodb+srv://admin1:UKIspgDXeRQ2BORu@cluster0.pyzpf.mongodb.net/test?retryWrites=true";
 
 //Database Connection
 mongoose
