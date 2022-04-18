@@ -21,7 +21,8 @@ router.post("/", verifyToken, async (req, res) => {
     const savedOrder = await newOrder.save();
     console.log("Order Made Successfully");
     res.status(200).json(savedOrder);
-    console.log("Order Stored in DB");
+    onsole.log("Order Stored in DB");
+    c;
 
     // // START SENDING EMAIL
     // const msg = {
