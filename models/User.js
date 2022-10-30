@@ -9,6 +9,7 @@ const UserSchema = new mongoose.Schema(
     password: { type: String, required: true },
     isStaff: { type: Boolean, default: false },
     isAdmin: { type: Boolean, default: false },
+    isUser: { type: Boolean, default: true },
     img: { type: String },
   },
   { timestamps: true }

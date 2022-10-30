@@ -1,5 +1,5 @@
 //Imports
- 
+
 const express = require("express");
 const app = express();
 require("express-async-errors");
@@ -16,14 +16,16 @@ const productRoute = require("./routes/product");
 const orderRoute = require("./routes/order");
 const cartRoute = require("./routes/cart");
 const paymentRoute = require("./routes/payment");
+const config = require("./utils/config");
+
 // const testRoute = require("./routes/test");
 
-const mongoUrl =
-  "mongodb+srv://admin1:UKIspgDXeRQ2BORu@cluster0.pyzpf.mongodb.net/test?retryWrites=true";
+// const mongoUrl =
+//   "mongodb+srv://admin1:UKIspgDXeRQ2BORu@cluster0.pyzpf.mongodb.net/test?retryWrites=true";
 
 //Database Connection
 mongoose
-  .connect(mongoUrl, { useNewUrlParser: true })
+  .connect(config.MONGODB_URI, { useNewUrlParser: true })
   .then(() => {
     logger.info("DB Connection Successful!!!!");
   })

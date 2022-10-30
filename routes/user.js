@@ -1,6 +1,7 @@
 const User = require("../models/User");
+const config = require("../utils/config");
+const jwt = require("jsonwebtoken");
 const {
-  verifyToken,
   verifyTokenAndAuthorization,
   verifyTokenAndStaff,
   verifyTokenAndAdmin,
@@ -88,6 +89,63 @@ router.get("/stats", verifyTokenAndStaff, async (req, res) => {
     res.status(200).json(data);
   } catch (err) {
     res.status(500).json(err);
+  }
+});
+
+//Refresh token
+router.post("/refresh", async (req, res) => {
+  try {
+    //Take refresh token from User
+    // console.log(req.headers);
+    const refreshAccessToken = req.headers.refreshtoken;
+    const user = await User.findById(req.headers.id);
+
+    //Send Error if no Token or Invalid Token
+    if (!refreshAccessToken) {
+      return res.status(401).json({ message: "You are not authenticated!!!!" });
+    }
+
+    // jwt.verify(refreshAccessToken, config.JWT_RFR_SECRET_KEY, (error, user) => {
+    //   error && console.log(error);
+
+    //Access Token
+    const newAccessToken = jwt.sign(
+      {
+        id: user?.id,
+        isStaff: user?.isStaff,
+        isAdmin: user?.isAdmin,
+        isUser: user?.isUser,
+      },
+      config.JWT_SECRET_KEY,
+      { expiresIn: "15s" }
+    );
+
+    //Refresh Token
+    const newRefreshAccessToken = jwt.sign(
+      {
+        id: user?.id,
+        isStaff: user?.isStaff,
+        isAdmin: user?.isAdmin,
+        isUser: user?.isUser,
+      },
+      config.JWT_RFR_SECRET_KEY,
+      { expiresIn: "15s" }
+    );
+
+    //   // refreshTokens.push(newRefreshAccessToken);
+
+    res.status(200).json({
+      accessToken: newAccessToken,
+      refreshToken: newRefreshAccessToken,
+    });
+  } catch (error) {
+    const errorMessage = {
+      error: error,
+      location: "Refresh Token Route",
+      time: new Date(),
+    };
+    console.error(errorMessage);
+    res.status(500).json(error);
   }
 });
 

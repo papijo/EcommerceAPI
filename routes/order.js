@@ -1,6 +1,5 @@
 const Order = require("../models/Order");
 const {
-  verifyToken,
   verifyTokenAndAuthorization,
   verifyTokenAndStaff,
   verifyTokenAndAdmin,
@@ -10,7 +9,7 @@ const logger = require("../utils/logger");
 const router = require("express").Router();
 
 //Create an Order
-router.post("/", verifyToken, async (req, res) => {
+router.post("/", verifyTokenAndAuthorization, async (req, res) => {
   const newOrder = new Order(req.body);
 
   // const data = req?.body?.data;
@@ -90,7 +89,7 @@ router.delete("/:id", verifyTokenAndAdmin, async (req, res) => {
 });
 
 //Get User Orders
-router.get("/find/:userId", verifyToken, async (req, res) => {
+router.get("/find/:userId", verifyTokenAndAuthorization, async (req, res) => {
   try {
     const orders = await Order.find({ userId: req.params.userId });
     res.status(200).json(orders);

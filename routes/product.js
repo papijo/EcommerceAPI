@@ -1,6 +1,5 @@
 const Product = require("../models/Product");
 const {
-  verifyToken,
   verifyTokenAndAuthorization,
   verifyTokenAndStaff,
   verifyTokenAndAdmin,
@@ -47,7 +46,7 @@ router.delete("/:id", verifyTokenAndStaff, async (req, res) => {
 });
 
 //Get Product
-router.get("/find/:id", async (req, res) => {
+router.get("/find/:id", verifyTokenAndAuthorization, async (req, res) => {
   try {
     const product = await Product.findById(req.params.id);
     res.status(200).json(product);
@@ -57,7 +56,7 @@ router.get("/find/:id", async (req, res) => {
 });
 
 //Get All Products
-router.get("/", async (req, res) => {
+router.get("/", verifyTokenAndAuthorization, async (req, res) => {
   const qNew = req.query.new;
   const qCategory = req.query.category;
   try {

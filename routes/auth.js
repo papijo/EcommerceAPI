@@ -55,24 +55,35 @@ router.post("/login", async (req, res) => {
     originalPassword !== req.body.password &&
       res.status(401).json("Wrong Credentials");
 
+    // console.log(`id: ${user.id}`);
+    // console.log(`_id: ${user._id}`);
+
     //Access Token
     const accessToken = jwt.sign(
       {
-        id: user._id,
-        isStaff: user.isStaff,
-        isAdmin: user.isAdmin,
+        id: user?.id,
+        isStaff: user?.isStaff,
+        isAdmin: user?.isAdmin,
+        isUser: user?.isUser,
       },
-      config.JWT_SECRET_KEY
+      config.JWT_SECRET_KEY,
+      { expiresIn: "15s" }
     );
 
     //Refresh Token
-    // const refreshToken = jwt.sign({
-    //     id: user._id,
-    //     isAdmin: user.isAdmin,
-    // }, config.JWT_RFR_SECRET_KEY);
+    const refreshToken = jwt.sign(
+      {
+        id: user?.id,
+        isStaff: user?.isStaff,
+        isAdmin: user?.isAdmin,
+        sUser: user?.isUser,
+      },
+      config.JWT_RFR_SECRET_KEY,
+      { expiresIn: "15s" }
+    );
 
     const { password, ...others } = user._doc;
-    res.status(200).json({ ...others, accessToken });
+    res.status(200).json({ ...others, accessToken, refreshToken });
   } catch (err) {}
 });
 
